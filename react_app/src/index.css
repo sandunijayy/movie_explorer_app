@@ -1,0 +1,410 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: 0 0% 100%;
+  --foreground: 222.2 84% 4.9%;
+  --card: 0 0% 100%;
+  --card-foreground: 222.2 84% 4.9%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 222.2 84% 4.9%;
+  --primary: 221.2 83.2% 53.3%;
+  --primary-foreground: 210 40% 98%;
+  --secondary: 210 40% 96.1%;
+  --secondary-foreground: 222.2 47.4% 11.2%;
+  --muted: 210 40% 96.1%;
+  --muted-foreground: 215.4 16.3% 46.9%;
+  --accent: 210 40% 96.1%;
+  --accent-foreground: 222.2 47.4% 11.2%;
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 210 40% 98%;
+  --border: 214.3 31.8% 91.4%;
+  --input: 214.3 31.8% 91.4%;
+  --ring: 221.2 83.2% 53.3%;
+  --radius: 0.5rem;
+}
+
+.dark {
+  --background: 222.2 84% 4.9%;
+  --foreground: 210 40% 98%;
+  --card: 222.2 84% 4.9%;
+  --card-foreground: 210 40% 98%;
+  --popover: 222.2 84% 4.9%;
+  --popover-foreground: 210 40% 98%;
+  --primary: 217.2 91.2% 59.8%;
+  --primary-foreground: 222.2 47.4% 11.2%;
+  --secondary: 217.2 32.6% 17.5%;
+  --secondary-foreground: 210 40% 98%;
+  --muted: 217.2 32.6% 17.5%;
+  --muted-foreground: 215 20.2% 65.1%;
+  --accent: 217.2 32.6% 17.5%;
+  --accent-foreground: 210 40% 98%;
+  --destructive: 0 62.8% 30.6%;
+  --destructive-foreground: 210 40% 98%;
+  --border: 217.2 32.6% 17.5%;
+  --input: 217.2 32.6% 17.5%;
+  --ring: 224.3 76.3% 48%;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+.movie-card {
+  @apply relative overflow-hidden rounded-lg shadow-md transition-all duration-300 hover:shadow-xl bg-card;
+}
+
+.movie-card:hover {
+  @apply transform scale-[1.03];
+}
+
+.movie-card .movie-poster {
+  @apply relative aspect-[2/3] overflow-hidden;
+}
+
+.movie-card .movie-poster img {
+  @apply object-cover w-full h-full transition-transform duration-300;
+}
+
+.movie-card:hover .movie-poster img {
+  @apply transform scale-105;
+}
+
+.movie-card .movie-info {
+  @apply p-4;
+}
+
+.movie-card .movie-title {
+  @apply font-semibold text-lg truncate;
+}
+
+.movie-card .movie-meta {
+  @apply flex items-center justify-between mt-1 text-sm text-muted-foreground;
+}
+
+.favorite-btn {
+  @apply absolute top-2 right-2 p-2 rounded-full bg-background/50 backdrop-blur-sm transition-colors duration-200;
+}
+
+.favorite-btn.active {
+  @apply text-red-500;
+}
+
+.rating-badge {
+  @apply inline-flex items-center px-2 py-1 rounded-full text-xs font-medium;
+}
+
+.rating-high {
+  @apply bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-100;
+}
+
+.rating-medium {
+  @apply bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-100;
+}
+
+.rating-low {
+  @apply bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-100;
+}
+
+.genre-badge {
+  @apply px-2 py-1 text-xs font-medium rounded-full bg-secondary text-secondary-foreground;
+}
+
+.section-title {
+  @apply text-2xl font-bold tracking-tight mb-4;
+}
+
+.hero-section {
+  @apply relative overflow-hidden bg-gradient-to-r from-blue-900 to-purple-900 text-white;
+}
+
+.hero-backdrop {
+  @apply absolute inset-0 opacity-20;
+}
+
+.hero-backdrop img {
+  @apply object-cover w-full h-full;
+}
+
+.hero-content {
+  @apply relative z-10 container mx-auto px-4 py-16 md:py-24;
+}
+
+.hero-title {
+  @apply text-4xl md:text-5xl font-bold mb-4;
+}
+
+.hero-description {
+  @apply text-lg md:text-xl max-w-2xl mb-8 text-gray-200;
+}
+
+.search-bar {
+  @apply relative w-full max-w-lg mx-auto;
+}
+
+.search-input {
+  @apply w-full h-12 pl-10 pr-4 rounded-full border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-primary;
+}
+
+.search-icon {
+  @apply absolute left-3 top-3.5 text-gray-400;
+}
+
+.search-button {
+  @apply absolute right-1 top-1 px-4 py-2 rounded-full bg-primary text-white;
+}
+
+.infinite-scroll-container {
+  @apply grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6;
+}
+
+.skeleton {
+  @apply animate-pulse bg-gray-200 dark:bg-gray-700 rounded;
+}
+
+.tabs {
+  @apply flex border-b border-gray-200 dark:border-gray-700 mb-4;
+}
+
+.tab {
+  @apply px-4 py-2 font-medium;
+}
+
+.tab.active {
+  @apply border-b-2 border-primary text-primary;
+}
+
+.trailer-container {
+  @apply relative pb-[56.25%] h-0 overflow-hidden rounded-lg mb-6;
+}
+
+.trailer-container iframe {
+  @apply absolute top-0 left-0 w-full h-full;
+}
+
+.cast-grid {
+  @apply grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4;
+}
+
+.cast-card {
+  @apply space-y-2;
+}
+
+.cast-image {
+  @apply relative aspect-[2/3] overflow-hidden rounded-lg;
+}
+
+.cast-name {
+  @apply font-medium truncate;
+}
+
+.cast-character {
+  @apply text-sm text-muted-foreground truncate;
+}
+
+.login-form {
+  @apply w-full max-w-md p-6 bg-card rounded-lg shadow-lg;
+}
+
+.form-group {
+  @apply space-y-2 mb-4;
+}
+
+.form-label {
+  @apply text-sm font-medium;
+}
+
+.form-input {
+  @apply w-full h-10 px-3 border rounded-md bg-background;
+}
+
+.form-button {
+  @apply w-full px-4 py-2 mt-6 text-white rounded-md bg-primary;
+}
+
+.error-message {
+  @apply text-sm text-red-500;
+}
+
+.empty-state {
+  @apply flex flex-col items-center justify-center py-12 text-center;
+}
+
+.pagination {
+  @apply flex items-center justify-center space-x-2 mt-8;
+}
+
+.page-button {
+  @apply px-3 py-2 border rounded-md;
+}
+
+.page-button.active {
+  @apply bg-primary text-white;
+}
+
+.filter-bar {
+  @apply flex flex-wrap gap-2 mb-6;
+}
+
+.filter-select {
+  @apply px-3 py-2 border rounded-md bg-background;
+}
+
+.filter-button {
+  @apply px-3 py-2 border rounded-md bg-background;
+}
+
+.filter-button.active {
+  @apply bg-primary text-white;
+}
+
+.movie-grid {
+  @apply grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6;
+}
+
+.movie-details {
+  @apply space-y-8;
+}
+
+.movie-header {
+  @apply grid gap-6 md:grid-cols-[300px_1fr] lg:grid-cols-[400px_1fr];
+}
+
+.movie-poster-container {
+  @apply relative aspect-[2/3] overflow-hidden rounded-lg;
+}
+
+.movie-info-container {
+  @apply space-y-4;
+}
+
+.movie-title-container {
+  @apply flex items-start justify-between;
+}
+
+.movie-title-main {
+  @apply text-3xl font-bold md:text-4xl;
+}
+
+.movie-year {
+  @apply text-muted-foreground;
+}
+
+.movie-genres {
+  @apply flex flex-wrap gap-2;
+}
+
+.movie-meta-info {
+  @apply flex flex-wrap gap-x-6 gap-y-2 text-sm;
+}
+
+.movie-overview {
+  @apply space-y-2;
+}
+
+.movie-overview-title {
+  @apply text-xl font-semibold;
+}
+
+.movie-overview-text {
+  @apply text-muted-foreground;
+}
+
+.movie-trailer {
+  @apply space-y-4;
+}
+
+.movie-trailer-title {
+  @apply text-xl font-semibold;
+}
+
+.movie-tabs {
+  @apply space-y-4;
+}
+
+.movie-tab-content {
+  @apply space-y-4;
+}
+
+.similar-movies {
+  @apply grid grid-cols-2 gap-6 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5;
+}
+
+.navbar {
+  @apply sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60;
+}
+
+.navbar-container {
+  @apply container flex items-center justify-between h-16 px-4 mx-auto;
+}
+
+.navbar-logo {
+  @apply flex items-center gap-2 text-xl font-bold;
+}
+
+.navbar-search {
+  @apply flex-1 hidden max-w-md mx-auto md:flex;
+}
+
+.navbar-actions {
+  @apply flex items-center gap-2;
+}
+
+.navbar-action-button {
+  @apply p-2 rounded-md;
+}
+
+.mobile-search {
+  @apply container flex px-4 py-2 mx-auto md:hidden;
+}
+
+.loader {
+  @apply flex items-center justify-center py-12;
+}
+
+.spinner {
+  @apply w-8 h-8 border-4 border-primary border-t-transparent rounded-full animate-spin;
+}
+
+.error-container {
+  @apply flex flex-col items-center justify-center py-12 text-center;
+}
+
+.error-icon {
+  @apply w-16 h-16 mb-4 text-red-500;
+}
+
+.error-title {
+  @apply text-2xl font-bold mb-2;
+}
+
+.error-message {
+  @apply text-muted-foreground mb-6;
+}
+
+.error-button {
+  @apply px-4 py-2 rounded-md bg-primary text-white;
+}
+
+.not-found {
+  @apply flex flex-col items-center justify-center min-h-[70vh] text-center;
+}
+
+.not-found-title {
+  @apply text-6xl font-bold mb-4;
+}
+
+.not-found-message {
+  @apply text-xl text-muted-foreground mb-8;
+}
+
+.not-found-button {
+  @apply px-4 py-2 rounded-md bg-primary text-white;
+}
